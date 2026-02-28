@@ -1,0 +1,275 @@
+/* ============================================================
+SPIN OUTFIT — 404.css
+Estilos exclusivos de la página de error 404
+Comparte la misma paleta de variables que style.css
+============================================================ */
+
+/* ---- VARIABLES (misma paleta que el proyecto principal) ---- */
+:root {
+    --black:        #0a0a0f;
+    --dark:         #12111a;
+    --dark-mid:     #1c1a2e;
+    --dark-light:   #2a2742;
+    --purple-deep:  #4b2d7f;
+    --purple-mid:   #7b4fc9;
+    --purple-light: #a87ade;
+    --lilac:        #c9a8f5;
+    --gold:         #c9a84c;
+    --gold-light:   #e8c96d;
+    --text-primary:   #f0ecff;
+    --text-secondary: #9b90c2;
+    --text-muted:     #5c5480;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body:    'DM Sans', 'Segoe UI', sans-serif;
+}
+
+/* ---- RESET BÁSICO ---- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ---- BASE DE PÁGINA: ocupa toda la pantalla, sin scroll ---- */
+html, body {
+    height: 100%;
+    background: var(--black);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    overflow: hidden; /* La 404 no necesita scroll */
+    scrollbar-width: none;
+}
+
+/* ---- FONDO: gradientes radiales + patrón de puntos ---- */
+.bg {
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(circle at 15% 25%, rgba(75, 45, 127, 0.18) 0%, transparent 45%),
+        radial-gradient(circle at 85% 75%, rgba(123, 79, 201, 0.12) 0%, transparent 45%),
+        radial-gradient(rgba(123, 79, 201, 0.05) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 28px 28px;
+}
+
+/* ---- LÍNEAS DIAGONALES sobre el fondo (decorativas) ---- */
+.bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 120px,
+        rgba(123, 79, 201, 0.03) 120px,
+        rgba(123, 79, 201, 0.03) 121px
+    );
+}
+
+/* ---- CONTENEDOR CENTRAL: centra todo verticalmente ---- */
+.wrap {
+    position: relative;
+    z-index: 10;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+/* ---- NÚMERO 404: el elemento más llamativo de la página ---- */
+.num {
+    /* clamp() adapta el tamaño: mínimo 6rem, ideal 20vw, máximo 14rem */
+    font-family: var(--font-display);
+    font-size: clamp(6rem, 20vw, 14rem);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    /* Gradiente de texto — cambia los stops para otro efecto de color */
+    background: linear-gradient(
+        135deg,
+        var(--dark-light) 0%,
+        var(--purple-deep) 35%,
+        var(--purple-mid) 60%,
+        var(--lilac) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 40px rgba(123, 79, 201, 0.3));
+    animation: float 6s ease-in-out infinite;
+    user-select: none;
+}
+
+/* ---- WRAPPER del 404: necesario para posicionar el ícono central ---- */
+.num-wrap {
+    position: relative;
+    display: inline-block;
+}
+
+/* ---- ÍCONO GIRATORIO en el centro del 404 ---- */
+.spin-icon {
+    position: absolute;
+    /* Centra el ícono sobre el número */
+    top: 62%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    color: var(--gold);
+    filter: drop-shadow(0 0 10px var(--gold));
+    animation: spin-slow 8s linear infinite;
+}
+
+/* ---- LÍNEA DIVISORA bajo el 404 ---- */
+.divider {
+    width: 60px;
+    height: 2px;
+    /* Gradiente que desvanece en los extremos */
+    background: linear-gradient(90deg, transparent, var(--purple-mid), transparent);
+    margin: 1.8rem auto 1.6rem;
+    animation: fadeIn 1s ease 0.4s both;
+}
+
+/* ---- TÍTULO: mensaje principal en cursiva ---- */
+.title {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 3vw, 1.5rem);
+    font-style: italic;
+    color: var(--text-secondary);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.7rem;
+    animation: fadeIn 1s ease 0.5s both;
+}
+
+/* ---- DESCRIPCIÓN: texto secundario explicativo ---- */
+.desc {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+    max-width: 320px; /* Limita el ancho para legibilidad */
+    line-height: 1.7;
+    animation: fadeIn 1s ease 0.65s both;
+}
+
+/* ---- BOTÓN DE REGRESO AL INICIO ---- */
+.btn-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2.5rem;
+    padding: 0.75rem 2rem;
+    /* Gradiente del botón — igual al btn-spin del proyecto */
+    background: linear-gradient(135deg, var(--purple-deep), var(--purple-mid));
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 999px; /* Totalmente redondeado */
+    box-shadow: 0 0 24px rgba(123, 79, 201, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: fadeIn 1s ease 0.8s both;
+}
+
+.btn-home:hover {
+    /* Hover: agranda y aumenta el glow */
+    transform: scale(1.05);
+    box-shadow: 0 0 40px rgba(123, 79, 201, 0.65);
+}
+
+/* ---- FLECHA dentro del botón ---- */
+.btn-home .arrow {
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.btn-home:hover .arrow {
+    /* Flecha se mueve a la izquierda en hover */
+    transform: translateX(-3px);
+}
+
+/* ---- LOGO FIJO EN LA PARTE SUPERIOR ---- */
+.logo-top {
+    position: fixed;
+    top: 1.8rem;
+    justify-self: center;
+    transform: translateX(-50%);
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    animation: fadeIn 0.8s ease both;
+}
+
+/* Ícono dorado del logo */
+.logo-top .star {
+    color: var(--gold);
+    font-size: 1rem;
+    filter: drop-shadow(0 0 5px var(--gold));
+}
+
+/* Texto del logo con gradiente */
+.logo-top span {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    background: linear-gradient(135deg, var(--text-primary) 40%, var(--lilac) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ---- PARTÍCULAS FLOTANTES: puntitos que suben desde el fondo ---- */
+.particle {
+    position: fixed;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--purple-light);
+    opacity: 0;
+    /* --dur y --delay se pasan como custom properties inline en el HTML */
+    animation: particle-rise var(--dur) ease-in infinite;
+    animation-delay: var(--delay);
+}
+
+/* ================================================================
+ANIMACIONES
+================================================================ */
+
+/* Float: el 404 sube y baja suavemente */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-12px); }
+}
+
+/* Spin: el ícono ✦ rota continuamente */
+@keyframes spin-slow {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* FadeIn: entrada con desplazamiento hacia arriba */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Particle: partículas que suben y se desvanecen */
+@keyframes particle-rise {
+    0%   { opacity: 0; transform: translateY(0) scale(1); }
+    20%  { opacity: 0.6; }
+    80%  { opacity: 0.3; }
+    100% { opacity: 0; transform: translateY(-100px) scale(0.3); }
+}
+
+/* ---- RESPONSIVO: pantallas muy bajas (landscape móvil) ---- */
+@media (max-height: 500px) {
+    /* Reduce el 404 y oculta el logo para que todo quepa */
+    .num { font-size: 5rem; }
+    .logo-top { display: none; }
+}

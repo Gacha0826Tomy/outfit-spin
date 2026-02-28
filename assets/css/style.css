@@ -1,0 +1,816 @@
+    /* ============================================================
+    SPIN OUTFIT — Hoja de estilos principal
+    Paleta: Negro profundo, morado oscuro, lila suave, dorado sutil
+    ============================================================ */
+
+    /* ---- VARIABLES DE COLOR Y TIPOGRAFÍA (personaliza aquí) ---- */
+    :root {
+    /* Paleta principal */
+    --black:        #0a0a0f;   /* Fondo más oscuro, casi negro azulado */
+    --dark:         #12111a;   /* Fondo de secciones y modales */
+    --dark-mid:     #1c1a2e;   /* Fondo de cards y paneles */
+    --dark-light:   #2a2742;   /* Bordes, separadores, hovers sutiles */
+    --purple-deep:  #4b2d7f;   /* Morado oscuro — acento principal */
+    --purple-mid:   #7b4fc9;   /* Morado medio — botones, badges */
+    --purple-light: #a87ade;   /* Morado suave — detalles, glows */
+    --lilac:        #c9a8f5;   /* Lila — texto acentuado, labels */
+    --gold:         #c9a84c;   /* Dorado — detalles de lujo, ícono logo */
+    --gold-light:   #e8c96d;   /* Dorado claro — hover en detalles dorados */
+
+    /* Texto */
+    --text-primary:   #f0ecff;   /* Texto principal, casi blanco violáceo */
+    --text-secondary: #9b90c2;   /* Texto secundario, descripción, labels */
+    --text-muted:     #5c5480;   /* Texto desvanecido, placeholders */
+
+    /* Estados */
+    --danger:       #c94f6b;   /* Rojo-magenta para acciones destructivas */
+    --danger-hover: #e0607e;
+
+    /* Sombras y brillos */
+    --shadow-card:  0 4px 32px rgba(75, 45, 127, 0.25);
+    --shadow-btn:   0 2px 16px rgba(123, 79, 201, 0.4);
+    --glow-purple:  0 0 24px rgba(123, 79, 201, 0.35);
+
+    /* Tipografía */
+    --font-display: 'Playfair Display', Georgia, serif;   /* Títulos elegantes */
+    --font-body:    'DM Sans', 'Segoe UI', sans-serif;    /* Texto funcional limpio */
+
+    /* Espaciado base */
+    --radius-sm:  8px;
+    --radius-md:  14px;
+    --radius-lg:  22px;
+
+    /* Transiciones */
+    --transition: 0.22s ease;
+    }
+
+    /* ---- RESET Y BASE ---- */
+    *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    }
+
+    html {
+    font-size: 16px;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    }
+
+    body {
+    /* Color de fondo del cuerpo entero */
+    background-color: var(--black);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    }
+
+    /* ---- FONDO DECORATIVO (patrón de puntos sutiles) ---- */
+    .bg-pattern {
+    /* Textura de fondo — cambia background-image para otro patrón */
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background-image:
+        radial-gradient(circle at 20% 20%, rgba(75, 45, 127, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(123, 79, 201, 0.08) 0%, transparent 50%),
+        radial-gradient(rgba(123, 79, 201, 0.06) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 28px 28px;
+    pointer-events: none;
+    }
+
+    /* ---- HEADER ---- */
+    .site-header {
+    /* Barra superior — ajusta padding para más/menos altura */
+    position: relative;
+    z-index: 10;
+    padding: 2.5rem 2rem 1.5rem;
+    border-bottom: 1px solid var(--dark-light);
+    background: linear-gradient(180deg, rgba(10, 10, 15, 0.95) 0%, transparent 100%);
+    }
+
+    .header-inner {
+    /* Contenedor centrado del header */
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    }
+
+    .logo {
+    /* Bloque del logotipo */
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    }
+
+    .logo-icon {
+    /* Ícono decorativo del logo — cambia el color con --gold */
+    color: var(--gold);
+    font-size: 1.4rem;
+    filter: drop-shadow(0 0 6px var(--gold));
+    animation: pulse-gold 3s ease-in-out infinite;
+    }
+
+    .logo h1 {
+    /* Nombre del sitio */
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    background: linear-gradient(135deg, var(--text-primary) 40%, var(--lilac) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    }
+
+    .tagline {
+    /* Subtítulo del header */
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    font-style: italic;
+    font-family: var(--font-display);
+    }
+
+    /* ---- CONTENIDO PRINCIPAL ---- */
+    .main-content {
+    /* Wrapper del contenido — ajusta padding y max-width */
+    position: relative;
+    z-index: 5;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+    }
+
+    /* ---- PANEL DE CONTROL (lista de ruletas) ---- */
+    .control-panel {
+    /* Sección principal de la lista de categorías */
+    }
+
+    .panel-header {
+    /* Fila con título y botón de nueva ruleta */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+    }
+
+    .panel-header h2 {
+    /* Título "Mis Ruletas" */
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.04em;
+    }
+
+    /* ---- GRID DE CARDS DE RULETAS ---- */
+    .ruletas-grid {
+    /* Cuadrícula responsiva de cards — cambia grid-template-columns para más/menos columnas */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 1.2rem;
+    }
+
+    /* ---- CARD DE RULETA ---- */
+    .ruleta-card {
+    /* Card individual de cada categoría/ruleta */
+    background: var(--dark-mid);
+    border: 1px solid var(--dark-light);
+    border-radius: var(--radius-md);
+    padding: 1.4rem 1.2rem;
+    cursor: pointer;
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+    position: relative;
+    overflow: hidden;
+    }
+
+    .ruleta-card::before {
+    /* Brillo superior decorativo en cada card */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--purple-mid), transparent);
+    opacity: 0;
+    transition: opacity var(--transition);
+    }
+
+    .ruleta-card:hover {
+    /* Efecto al pasar el cursor por la card */
+    transform: translateY(-3px);
+    border-color: var(--purple-mid);
+    box-shadow: var(--shadow-card);
+    }
+
+    .ruleta-card:hover::before {
+    opacity: 1;
+    }
+
+    .card-categoria {
+    /* Nombre de la categoría en la card */
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    }
+
+    .card-meta {
+    /* Info secundaria: género y conteo de items */
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+    }
+
+    .card-count {
+    /* Contador de prendas en la card */
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    }
+
+    .card-arrow {
+    /* Flecha decorativa de la card */
+    position: absolute;
+    bottom: 1.2rem;
+    right: 1.2rem;
+    color: var(--purple-light);
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity var(--transition), transform var(--transition);
+    }
+
+    .ruleta-card:hover .card-arrow {
+    opacity: 1;
+    transform: translateX(3px);
+    }
+
+    /* ---- BADGE DE GÉNERO ---- */
+    .badge {
+    /* Etiqueta de género (hombre/mujer/unisex) — cambia background para otro color */
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    background: var(--purple-deep);
+    color: var(--lilac);
+    border: 1px solid var(--purple-mid);
+    }
+
+    .badge.hombre  { background: rgba(40, 55, 100, 0.6); color: #90b0f0; border-color: #4060b0; }
+    .badge.mujer   { background: rgba(100, 40, 80, 0.6); color: #f0a0c0; border-color: #c06080; }
+    .badge.unisex  { background: var(--purple-deep); color: var(--lilac); }
+
+    /* ---- ESTADO VACÍO ---- */
+    .empty-state {
+    /* Mensaje cuando no hay ruletas creadas */
+    text-align: center;
+    padding: 5rem 2rem;
+    color: var(--text-muted);
+    display: none;
+    }
+
+    .empty-state.visible {
+    display: block;
+    }
+
+    .empty-icon {
+    /* Ícono grande del estado vacío */
+    font-size: 2.5rem;
+    color: var(--dark-light);
+    margin-bottom: 1rem;
+    }
+
+    /* ---- MODAL ---- */
+    .modal-overlay {
+    /* Fondo oscuro semi-transparente del modal */
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(5, 5, 12, 0.8);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    }
+
+    .modal-overlay.visible {
+    opacity: 1;
+    pointer-events: all;
+    }
+
+    .modal {
+    /* Caja del modal — ajusta max-width para más/menos ancho */
+    background: var(--dark);
+    border: 1px solid var(--dark-light);
+    border-radius: var(--radius-lg);
+    padding: 2.2rem 2rem;
+    max-width: 420px;
+    width: 100%;
+    position: relative;
+    box-shadow: var(--shadow-card), 0 0 60px rgba(75, 45, 127, 0.2);
+    transform: translateY(10px);
+    transition: transform 0.25s ease;
+    }
+
+    .modal-overlay.visible .modal {
+    transform: translateY(0);
+    }
+
+    .modal-close {
+    /* Botón X para cerrar el modal */
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.3rem;
+    transition: color var(--transition);
+    }
+
+    .modal-close:hover {
+    color: var(--text-primary);
+    }
+
+    .modal-title {
+    /* Título dentro del modal */
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.6rem;
+    color: var(--text-primary);
+    }
+
+    .modal-footer {
+    /* Fila de botones inferior del modal */
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    margin-top: 1.8rem;
+    }
+
+    /* ---- FORMULARIO ---- */
+    .form-group {
+    /* Bloque de campo + label */
+    margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+    /* Etiqueta de campo */
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group select {
+    /* Inputs y selects del formulario */
+    width: 100%;
+    background: var(--dark-mid);
+    border: 1px solid var(--dark-light);
+    border-radius: var(--radius-sm);
+    padding: 0.7rem 1rem;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    transition: border-color var(--transition), box-shadow var(--transition);
+    outline: none;
+    appearance: none;
+    }
+
+    .form-group input::placeholder {
+    color: var(--text-muted);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+    /* Estado focus de los inputs */
+    border-color: var(--purple-mid);
+    box-shadow: 0 0 0 3px rgba(123, 79, 201, 0.15);
+    }
+
+    /* ---- BOTONES ---- */
+    .btn {
+    /* Base de todos los botones */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 0.65rem 1.4rem;
+    border-radius: var(--radius-sm);
+    border: none;
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    text-decoration: none;
+    }
+
+    .btn:active {
+    transform: scale(0.97);
+    }
+
+    .btn-primary {
+    /* Botón de acción principal — morado */
+    background: var(--purple-mid);
+    color: #fff;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+    background: var(--purple-light);
+    box-shadow: var(--shadow-btn);
+    }
+
+    .btn-primary:disabled {
+    /* Botón principal deshabilitado */
+    opacity: 0.4;
+    cursor: not-allowed;
+    }
+
+    .btn-ghost {
+    /* Botón fantasma / secundario */
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--dark-light);
+    }
+
+    .btn-ghost:hover {
+    border-color: var(--purple-mid);
+    color: var(--text-primary);
+    }
+
+    .btn-danger {
+    /* Botón de acción destructiva — rojo-magenta */
+    background: rgba(201, 79, 107, 0.15);
+    color: var(--danger);
+    border: 1px solid rgba(201, 79, 107, 0.3);
+    }
+
+    .btn-danger:hover {
+    background: var(--danger);
+    color: #fff;
+    }
+
+    .btn-sm {
+    /* Modificador: botón pequeño */
+    padding: 0.4rem 0.85rem;
+    font-size: 0.82rem;
+    }
+
+    .btn-spin {
+    /* Botón grande de GIRAR — el más destacado */
+    background: linear-gradient(135deg, var(--purple-deep), var(--purple-mid));
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 0.9rem 3rem;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--glow-purple);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    margin-top: 1.6rem;
+    }
+
+    .btn-spin:hover:not(:disabled) {
+    transform: scale(1.04);
+    box-shadow: 0 0 36px rgba(123, 79, 201, 0.6);
+    background: linear-gradient(135deg, var(--purple-mid), var(--purple-light));
+    }
+
+    .btn-spin:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    }
+
+    .btn-spin.girando {
+    /* Estado animado mientras la ruleta gira */
+    pointer-events: none;
+    animation: pulse-btn 0.6s ease-in-out infinite alternate;
+    }
+
+    /* ---- BOTÓN VOLVER ---- */
+    .btn-back {
+    /* Botón de retorno al panel principal */
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    cursor: pointer;
+    padding: 0.4rem 0;
+    letter-spacing: 0.03em;
+    transition: color var(--transition);
+    margin-bottom: 1.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    }
+
+    .btn-back:hover {
+    color: var(--lilac);
+    }
+
+    /* ---- VISTA DETALLADA DE RULETA ---- */
+    .detalle-inner {
+    /* Layout de dos columnas: sidebar + canvas */
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    }
+
+    .detalle-sidebar {
+    /* Columna izquierda con info y lista de items */
+    background: var(--dark-mid);
+    border: 1px solid var(--dark-light);
+    border-radius: var(--radius-md);
+    padding: 1.6rem;
+    }
+
+    .ruleta-info-header {
+    /* Fila superior del sidebar: título + botón eliminar */
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.6rem;
+    flex-wrap: wrap;
+    }
+
+    .ruleta-info-header h2 {
+    /* Nombre de la categoría en la vista detallada */
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    }
+
+    /* ---- SECCIÓN DE ITEMS / PRENDAS ---- */
+    .items-section h3 {
+    /* Título "Prendas / Items" */
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.9rem;
+    }
+
+    .add-item-row {
+    /* Fila de input + botón para añadir prendas */
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    }
+
+    .add-item-row input {
+    /* Input de nueva prenda */
+    flex: 1;
+    background: var(--dark);
+    border: 1px solid var(--dark-light);
+    border-radius: var(--radius-sm);
+    padding: 0.5rem 0.8rem;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color var(--transition);
+    }
+
+    .add-item-row input::placeholder {
+    color: var(--text-muted);
+    }
+
+    .add-item-row input:focus {
+    border-color: var(--purple-mid);
+    }
+
+    .items-list {
+    /* Lista de prendas registradas */
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    max-height: 320px;
+    overflow-y: auto;
+    padding-right: 4px;
+    }
+
+    /* Scrollbar personalizada de la lista */
+    .items-list::-webkit-scrollbar       { width: 4px; }
+    .items-list::-webkit-scrollbar-track { background: var(--dark); }
+    .items-list::-webkit-scrollbar-thumb { background: var(--dark-light); border-radius: 2px; }
+
+    .item-row {
+    /* Fila de cada prenda en la lista */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--dark);
+    border: 1px solid var(--dark-light);
+    border-radius: var(--radius-sm);
+    padding: 0.45rem 0.7rem;
+    font-size: 0.88rem;
+    transition: border-color var(--transition);
+    }
+
+    .item-row:hover {
+    border-color: var(--dark-light);
+    }
+
+    .item-nombre {
+    /* Nombre de la prenda en la lista */
+    flex: 1;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+
+    .item-delete {
+    /* Botón de eliminar prenda */
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0 0.3rem;
+    line-height: 1;
+    transition: color var(--transition);
+    flex-shrink: 0;
+    }
+
+    .item-delete:hover {
+    color: var(--danger);
+    }
+
+    /* ---- CANVAS DE LA RULETA ---- */
+    .detalle-canvas-wrap {
+    /* Columna derecha: canvas + botón girar + resultado */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    }
+
+    .canvas-container {
+    /* Contenedor del canvas con indicador de flecha */
+    position: relative;
+    display: inline-block;
+    }
+
+    .ruleta-flecha {
+    /* Flecha indicadora que apunta al resultado */
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    color: var(--gold);
+    filter: drop-shadow(0 0 8px var(--gold));
+    z-index: 10;
+    line-height: 1;
+    }
+
+    #ruletaCanvas {
+    /* El canvas donde se dibuja la ruleta — ajusta width/height para tamaño */
+    display: block;
+    border-radius: 50%;
+    box-shadow: 0 0 40px rgba(123, 79, 201, 0.3), 0 0 0 3px var(--dark-light);
+    }
+
+    /* ---- RESULTADO ---- */
+    .resultado {
+    /* Caja del resultado tras girar */
+    margin-top: 1.6rem;
+    text-align: center;
+    background: var(--dark-mid);
+    border: 1px solid var(--purple-deep);
+    border-radius: var(--radius-md);
+    padding: 1rem 2.5rem;
+    animation: fadeInUp 0.4s ease;
+    }
+
+    .resultado-label {
+    /* Label "Resultado" encima del texto */
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+    }
+
+    .resultado-valor {
+    /* El texto del resultado — prenda seleccionada */
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--lilac);
+    text-shadow: 0 0 16px rgba(168, 122, 222, 0.5);
+    }
+
+    /* ---- FOOTER ---- */
+    .site-footer {
+    /* Pie de página */
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    padding: 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    border-top: 1px solid var(--dark-light);
+    }
+
+    /* ---- ANIMACIONES ---- */
+    @keyframes pulse-gold {
+    /* Pulso suave del ícono dorado del logo */
+    0%, 100% { filter: drop-shadow(0 0 4px var(--gold)); }
+    50%       { filter: drop-shadow(0 0 12px var(--gold-light)); }
+    }
+
+    @keyframes pulse-btn {
+    /* Latido del botón GIRAR mientras la ruleta anima */
+    from { box-shadow: 0 0 20px rgba(123, 79, 201, 0.5); }
+    to   { box-shadow: 0 0 50px rgba(123, 79, 201, 0.9); }
+    }
+
+    @keyframes fadeInUp {
+    /* Entrada del resultado con desplazamiento */
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+    }
+
+    /* ---- RESPONSIVO ---- */
+    @media (max-width: 820px) {
+    /* Tablet y móvil: colapsa el detalle a una sola columna */
+    .detalle-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .detalle-canvas-wrap {
+        order: -1; /* Ruleta primero en móvil */
+    }
+
+    #ruletaCanvas {
+        width: 300px;
+        height: 300px;
+    }
+    }
+
+    @media (max-width: 480px) {
+    /* Móvil pequeño */
+    .logo h1 {
+        font-size: 1.6rem;
+    }
+
+    .panel-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #ruletaCanvas {
+        width: 260px;
+        height: 260px;
+    }
+
+    .btn-spin {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+    }

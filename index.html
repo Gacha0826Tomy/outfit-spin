@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SPIN OUTFIT — Ruleta de Moda</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- Fondo decorativo con patrón -->
+    <div class="bg-pattern" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <div class="header-inner">
+        <div class="logo">
+            <span class="logo-icon">✦</span>
+            <h1>SPIN OUTFIT</h1>
+        </div>
+        <p class="tagline">Deja que la suerte elija tu look</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <!-- Panel de control: crear/gestionar ruletas -->
+        <section class="control-panel" id="controlPanel">
+        <div class="panel-header">
+            <h2>Mis Ruletas</h2>
+            <button class="btn btn-primary" id="btnNuevaRuleta">
+            <span>+</span> Nueva Ruleta
+            </button>
+        </div>
+
+        <!-- Lista de ruletas creadas -->
+        <div class="ruletas-grid" id="ruletasGrid">
+            <!-- Se generan dinámicamente -->
+        </div>
+
+        <!-- Mensaje vacío -->
+        <div class="empty-state" id="emptyState">
+            <p class="empty-icon">✦</p>
+            <p>Aún no tienes ruletas.</p>
+            <p>¡Crea tu primera para empezar a girar!</p>
+        </div>
+        </section>
+
+        <!-- Modal: crear ruleta -->
+        <div class="modal-overlay" id="modalCrear" aria-hidden="true">
+        <div class="modal">
+            <button class="modal-close" id="btnCerrarCrear" aria-label="Cerrar">✕</button>
+            <h3 class="modal-title">Nueva Ruleta</h3>
+            <div class="form-group">
+            <label for="inputNombreRuleta">Nombre de la categoría</label>
+            <input type="text" id="inputNombreRuleta" placeholder="Ej: Camisas, Zapatos, Accesorios…" maxlength="30" />
+            </div>
+            <div class="form-group">
+            <label for="inputGenero">Género</label>
+            <select id="inputGenero">
+                <option value="unisex">Unisex</option>
+                <option value="mujer">Mujer</option>
+                <option value="hombre">Hombre</option>
+            </select>
+            </div>
+            <div class="modal-footer">
+            <button class="btn btn-ghost" id="btnCancelarCrear">Cancelar</button>
+            <button class="btn btn-primary" id="btnConfirmarCrear">Crear</button>
+            </div>
+        </div>
+        </div>
+
+        <!-- Vista detallada de una ruleta -->
+        <section class="ruleta-detalle" id="ruletaDetalle" hidden>
+        <button class="btn-back" id="btnVolver">
+            ← Volver
+        </button>
+
+        <div class="detalle-inner">
+
+            <!-- Columna izquierda: info + items -->
+            <div class="detalle-sidebar">
+            <div class="ruleta-info-header">
+                <div>
+                <h2 id="detalleTitulo">Nombre</h2>
+                <span class="badge" id="detalleGenero">unisex</span>
+                </div>
+                <button class="btn btn-danger btn-sm" id="btnEliminarRuleta">Eliminar ruleta</button>
+            </div>
+
+            <div class="items-section">
+                <h3>Prendas / Items</h3>
+                <div class="add-item-row">
+                <input type="text" id="inputNuevoItem" placeholder="Añadir prenda…" maxlength="50" />
+                <button class="btn btn-primary btn-sm" id="btnAgregarItem">+</button>
+                </div>
+                <ul class="items-list" id="itemsList">
+                <!-- Dinámico -->
+                </ul>
+            </div>
+            </div>
+
+            <!-- Columna derecha: canvas de la ruleta -->
+            <div class="detalle-canvas-wrap">
+            <div class="canvas-container">
+                <!-- Flecha indicadora -->
+                <div class="ruleta-flecha" aria-hidden="true">▼</div>
+                <canvas id="ruletaCanvas" width="420" height="420"></canvas>
+            </div>
+            <button class="btn btn-spin" id="btnGirar" disabled>
+                GIRAR ✦
+            </button>
+            <div class="resultado" id="resultado" hidden>
+                <p class="resultado-label">Resultado</p>
+                <p class="resultado-valor" id="resultadoTexto"></p>
+            </div>
+            </div>
+
+        </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <p>SPIN OUTFIT &nbsp;·&nbsp; Todos los datos se guardan en tu navegador</p>
+    </footer>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
